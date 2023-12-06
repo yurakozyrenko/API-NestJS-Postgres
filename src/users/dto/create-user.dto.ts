@@ -26,7 +26,6 @@ export class CreateUserDto {
     example: 'Kazyrenka.jpg',
     description: 'изоражение пользователя',
   })
-  @IsNotEmpty({ message: 'Не Должно быть пустым' })
   readonly image: string;
 }
 
@@ -69,4 +68,16 @@ export class PdfUserDto {
   @IsNotEmpty({ message: 'Не Должно быть пустым' })
   readonly email: string;
   //
+}
+
+export class AuthUserDto {
+  @ApiProperty({
+    example: 'example@example.com',
+    description: 'email пользователя',
+    required: false,
+  })
+  @IsString({ message: 'Должно быть строкой' })
+  @IsEmail({}, { message: 'Некорректный email' })
+  @IsNotEmpty({ message: 'Не Должно быть пустым' })
+  readonly email: string;
 }
